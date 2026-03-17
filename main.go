@@ -38,7 +38,7 @@ func main() {
 	server.HandleFunc("GET /", taskHandler.Health)
 	server.HandleFunc("GET /task", taskHandler.GetTasks)
 	server.HandleFunc("POST /task", taskHandler.CreateTask)
-	server.HandleFunc("UPDATE /task", taskHandler.UpdateTask)
+	server.HandleFunc("PATCH /task/", taskHandler.UpdateTask)
 
 	http.ListenAndServe(":1999", server)
 }

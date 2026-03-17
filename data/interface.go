@@ -6,6 +6,6 @@ import (
 
 type TaskRepositaryModel interface {
 	CreateTask(task models.CreateTask) int
-	GetTasks() []models.Task
-	UpdateTask(id int, title string, description string, status models.Status) models.Task
+	GetTasks() ([]models.Task, error)
+	UpdateTask(id int, title string, description string, status models.Status) (models.Task, error)
 }
