@@ -63,6 +63,9 @@ func (th *TaskHandlers) UpdateTask(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Id can't be found %v", err)
 		http.Error(w, "Id can't be found", http.StatusBadRequest)
 	}
-	th.Storage.UpdateTask(id_num, task.Title, task.Description, task.Status)
-
+	updated_task := th.Storage.UpdateTask(id_num, task.Title, task.Description, task.Status)
+	if err := json.NewEncoder(w).Encode(updated_task); err != nil {
+		http.Error(w, "Not Able to Decode the Updated Task", http.StatusBadRequest)
+		return
+	}
 }
